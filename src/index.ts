@@ -3,6 +3,7 @@ import * as readline from 'readline'
 import { exec } from 'child_process'
 
 import { keysMap } from './constants'
+import { processKeySequence } from './utils'
 
 class AndroidShellInput extends Command {
   static description = ''
@@ -22,12 +23,7 @@ class AndroidShellInput extends Command {
     process.stdin?.setRawMode?.(true)
 
     process.stdin.on('keypress', (_, key: readline.Key) => {
-      let keySequence: string = ''
-      if (key.shift || key.ctrl || !key.name) {
-        keySequence = key.sequence ?? ''
-      } else {
-        keySequence = key.name ?? ''
-      }
+      let keySequence: string = processKeySequence(key)
 
       if (keySequence === '\u0003') {
         process.exit()
