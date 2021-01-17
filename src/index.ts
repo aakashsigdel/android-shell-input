@@ -23,7 +23,7 @@ class AndroidShellInput extends Command {
 
     process.stdin.on('keypress', (_, key: readline.Key) => {
       let keySequence: string = ''
-      if (key.shift || key.ctrl) {
+      if (key.shift || key.ctrl || !key.name) {
         keySequence = key.sequence ?? ''
       } else {
         keySequence = key.name ?? ''
