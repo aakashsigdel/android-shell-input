@@ -1,0 +1,45 @@
+{
+  "name": "android-shell-input",
+  "description": "Send standard keyboad input through adb",
+  "version": "0.0.1",
+  "author": "Aakash Sigdel",
+  "bin": {
+    "asi": "./bin/run"
+  },
+  "bugs": "https://github.com/aakashsigdel/android-shell-input/issues",
+  "dependencies": {
+    "@oclif/command": "^1",
+    "@oclif/config": "^1",
+    "@oclif/plugin-help": "^3",
+    "tslib": "^1"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1",
+    "@types/node": "^10",
+    "ts-node": "^8",
+    "typescript": "^3.3"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/lib"
+  ],
+  "homepage": "https://github.com/aakashsigdel/android-shell-input",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "oclif": {
+    "bin": "asi"
+  },
+  "repository": "aakashsigdel/android-shell-input",
+  "scripts": {
+    "prepack": "rm -rf lib && tsc -b && oclif-dev readme",
+    "test": "echo NO TESTS",
+    "version": "oclif-dev readme && git add README.md"
+  },
+  "types": "lib/index.d.ts"
+}
