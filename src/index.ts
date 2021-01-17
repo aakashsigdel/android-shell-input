@@ -47,8 +47,8 @@ class AndroidShellInput extends Command {
   }
 
   async processConfig(configPath: string) {
-    const { isFile } = await promises.lstat(configPath)
-    if (isFile()) {
+    const stat = await promises.lstat(configPath)
+    if (stat.isFile()) {
       const config = await this.readFile(configPath)
       const finalConfig = mergeConfigs(keysMap, config)
       this.listen(finalConfig)
