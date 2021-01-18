@@ -1,13 +1,41 @@
-import { Command, flags } from '@oclif/command'
 import * as readline from 'readline'
+import { promises } from 'fs'
 import { exec } from 'child_process'
-import { existsSync, lstatSync, promises } from 'fs'
+import { Command, flags } from '@oclif/command'
 
 import { keysMap } from './constants'
 import { processKeySequence, mergeConfigs, KeyConfig } from './utils'
 
 class AndroidShellInput extends Command {
-  static description = ''
+  static description = `
+Send keyboad input through adb.
+You can pass in an optional JSON Config file to configure additional keys.
+
+Format of the JSON config file:
+{
+    "keyboard_key": "keycode"
+}
+
+example config file:
+{
+    "h": "21",
+    "j": "19",
+    "k": "20",
+    "l": "22"
+}
+
+default config:
+{
+  "backspace": "4",
+  "escape": "4",
+  "up": "19",
+  "down": "20",
+  "left": "21",
+  "right": "22",
+  "return": "23",
+  "\`": "82",
+}
+  `
 
   static flags = {
     version: flags.version({ char: 'v' }),
