@@ -10,7 +10,6 @@ Send keyboad input through adb
 
 <!-- toc -->
 * [Usage](#usage)
-* [Commands](#commands)
 <!-- tocstop -->
 # Usage
 ### Install
