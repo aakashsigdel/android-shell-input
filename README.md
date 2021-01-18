@@ -13,12 +13,11 @@ Send keyboad input through adb
 * [Commands](#commands)
 <!-- tocstop -->
 # Usage
-<!-- usage -->
 ### Install
 ```sh-session
 $ npm install -g android-shell-input or yarn global add android-shell-input
 ```
-### Usage
+### Commands
 ```sh-session
 $ asi (-v|--version)
 0.0.1
@@ -61,8 +60,6 @@ DESCRIPTION
   }
 ...
 ```
-<!-- usagestop -->
-# Commands
-<!-- commands -->
 
-<!-- commandsstop -->
+### Special thanks
+[@hubert](https://github.com/TrebuhD)
