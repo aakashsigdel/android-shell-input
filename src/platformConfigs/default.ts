@@ -1,4 +1,6 @@
-export const keysMap: { [k: string]: string } = {
+import { KeyConfig } from '../utils'
+
+const config: KeyConfig = {
   backspace: '4',
   escape: '4',
   up: '19',
@@ -8,3 +10,5 @@ export const keysMap: { [k: string]: string } = {
   return: '23',
   '`': '82',
 }
+
+module.exports = config
