@@ -3,8 +3,15 @@ import { promises } from 'fs'
 import { exec } from 'child_process'
 import { Command, flags } from '@oclif/command'
 
-import { keysMap } from './constants'
-import { processKeySequence, mergeConfigs, KeyConfig } from './utils'
+import {
+  processKeySequence,
+  mergeConfigs,
+  KeyConfig,
+  getAvailablePlatforms,
+  getAvailablePlatformsString,
+  Platform,
+  requireConfig,
+} from './utils'
 
 class AndroidShellInput extends Command {
   static description = `
@@ -44,7 +51,15 @@ default config:
       char: 'c',
       description: 'path to the config file',
     }),
+    platform: flags.string({
+      char: 'p',
+      description: `load one of the default platform config. Available platforms: ${getAvailablePlatformsString()}`,
+      options: getAvailablePlatforms(),
+      default: Platform.DEFAULT,
+    }),
   }
+
+  platform: Platform = Platform.DEFAULT
 
   listen(keyConfig: KeyConfig) {
     readline.emitKeypressEvents(process.stdin)
@@ -78,7 +93,7 @@ default config:
     const stat = await promises.lstat(configPath)
     if (stat.isFile()) {
       const config = await this.readFile(configPath)
-      const finalConfig = mergeConfigs(keysMap, config)
+      const finalConfig = mergeConfigs(requireConfig(this.platform), config)
       this.listen(finalConfig)
     } else {
       throw new Error('Invalid config file')
@@ -87,10 +102,11 @@ default config:
 
   async run() {
     const { flags } = this.parse(AndroidShellInput)
+    this.platform = flags.platform as Platform
     if (flags.config) {
       this.processConfig(flags.config)
     } else {
-      this.listen(keysMap)
+      this.listen(requireConfig(this.platform))
     }
   }
 }
