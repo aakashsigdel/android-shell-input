@@ -1,7 +1,7 @@
 {
   "name": "android-shell-input",
   "description": "Send standard keyboad input through adb",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Aakash Sigdel",
   "bin": {
     "asi": "./bin/run"
