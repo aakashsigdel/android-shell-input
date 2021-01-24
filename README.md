@@ -27,6 +27,7 @@ $ asi
 OPTIONS
   -c, --config=config  path to the config file
   -h, --help           show CLI help
+  -p, --platform=amazonfire|default load one of the default platform config. Available platforms: amazonfire
   -v, --version        show CLI version
 
 DESCRIPTION
